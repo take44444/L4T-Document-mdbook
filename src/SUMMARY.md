@@ -13,6 +13,6 @@
 - [if-elif-else文](./if.md)
 - [loop文](./loop.md)
 - [ブロック](./compound.md)
-- [演算子](operator.md)
+
 - [FFI](./ffi.md)
 - [unsafeブロック](./unsafe.md)
