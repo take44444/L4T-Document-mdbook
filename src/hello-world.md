@@ -16,7 +16,7 @@ func main() -> num
   trigger="loop"
   delay="1000"
   style="height:2em">
-</lord-icon> <small> `extern "C" any printf` は未実装であり，現在は1行目を除いたコードを書くことで同じ挙動を試せます．</small>
+</lord-icon> <small> `extern "C" any printf` は未実装であり，現在は1行目を除いたコードを書くことで同じ挙動を試すことができます．</small>
 
 上のコードを実行すると，標準出力に
 

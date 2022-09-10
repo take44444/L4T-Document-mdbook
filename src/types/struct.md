@@ -1,3 +1,5 @@
+<script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+
 # 構造体
 
 配列では同じ型の複数の値を扱うことができましたが，構造体では，違う型も含み得る複数の値を扱うことができます．
