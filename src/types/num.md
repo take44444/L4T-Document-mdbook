@@ -19,7 +19,89 @@ a: b
 a: b: 100
 ```
 
-6行目では， `b` に `100` が代入された後， `a` にも `100` が代入されます．
+6行目では， `b` に `100` が代入された後， `a` にも `100` が代入されます．これは，L4Tの代入は，**代入"文"ではなく代入"式"**であり，代入した値として評価されるからです．
+
+### Logical Or
+
+[if-elif-else文](../if.html)と組み合わせて使うと便利です．
+
+```
+num a, b, c
+a: 3
+b: 10
+c: a < 4 || b > 10
+```
+
+### Logical And
+
+[if-elif-else文](../if.html)と組み合わせて使うと便利です．
+
+```
+num a, b, c
+a: 3
+b: 10
+c: a < 4 && b > 10
+```
+
+### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Bitwise Or
+
+<small>この機能は開発中です</small>
+
+### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Bitwise Xor
+
+<small>この機能は開発中です</small>
+
+### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Bitwise And
+
+<small>この機能は開発中です</small>
+
+### Equality
+
+[if-elif-else文](../if.html)と組み合わせて使うと便利です．
+
+```
+num a, b
+a: 3
+b: a = 3
+```
+
+```
+num a, b
+a: 3
+b: a != 3
+```
+
+### Relational
+
+[if-elif-else文](../if.html)と組み合わせて使うと便利です．
+
+```
+num a, b
+a: 3
+b: a < 3
+```
+
+```
+num a, b
+a: 3
+b: a <= 3
+```
+
+```
+num a, b
+a: 3
+b: a > 3
+```
+
+```
+num a, b
+a: 3
+b: a >= 3
+```
+
+### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Shift
+
+<small>この機能は開発中です</small>
 
 ### Additive
 
@@ -37,41 +119,16 @@ c: a - 200
 
 `c` には，5行目では `3` ，6行目では `30` ，7行目では `-190` が代入されます．
 
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Logical Or
+### Multiplicative
 
-<small>この機能は開発中です</small>
+積は `*` ，商は `/` で行います．剰余は `%` です．
 
+```
+num a, b, c
 
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Logical And
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Bitwise Or
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Bitwise Xor
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Bitwise And
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Equality
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Relational
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Shift
-
-<small>この機能は開発中です</small>
-
-### <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>Multiplicative
-
-<small>この機能は開発中です</small>
-
+a: 10
+b: 20
+c: 10 / 5
+c: b % a
+c: a * 200
+```
