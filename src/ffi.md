@@ -1,5 +1,53 @@
 <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
 
-# <lord-icon src="https://cdn.lordicon.com/giaigwkd.json" trigger="loop" delay="1000" style="height:2em"></lord-icon>FFI
+# FFI
 
-<small>この機能は開発中です</small>
+ここまでの章で， `ffi "C" printf` というような文が何度も出てきて，その度にもやもやされた方もいらっしゃるかもしれません．ここでは，この `ffi` について説明します．
+
+**FFI (Foreign Function Interface)** とは，あるプログラミング言語から他のプログラミング言語で定義された関数などを利用するための機構です．FFIはL4Tに関係なく一般的な用語で，**Rust**や**Go**などの他の言語にも同じ機能があります．
+
+L4Tでは，`ffi "C" ????` と書くことで**C言語**で定義された関数を利用することができます．これまでの章で `ffi "C" printf` と書いたとき，コード内に `printf` 関数の定義がないのにも関わらず `printf` 関数を使っていたと思います．これは，そのコード内ではなく，C言語の標準ライブラリの中で定義された `printf` 関数を呼び出していたからです．
+
+同じように書くことで，C言語の標準ライブラリに含まれる他の関数も呼び出すことができます．これまでの章でも， `malloc` や `free` を使いました．
+
+```admonish note title="コンパイラ責任とプログラマ責任"
+`ffi "C" printf` を見てわかるように，C言語で定義された関数のインターフェース(引数や返り値)は，L4Tで保証することができません．そのため，これらの関数の使用は**L4Tコンパイラの管理外**であり，その部分の安全性の確認は**プログラマ責任**となります．誤った使い方をした場合，エラーは**実行時**に発生する可能性があります．これは私たちプログラマが最も恐れる(べき)ことの1つです．使用する際は，よく確認するようにしましょう．
+```
+
+以下は誤ったコードの例です．皆さんもどこがどのように間違っているか，考えてみてください．
+
+```
+ffi "C" free
+ffi "C" malloc
+ffi "C" printf
+
+func main() -> num
+  array<num>[2] arr
+  arr: malloc(16)
+
+  arr[0]: 100
+  arr[1]: 200
+
+  printf("%d, %d\n", arr[0], arr[1])
+
+  free(arr)
+  return 0
+
+```
+
+<details style="cursor : pointer;">
+<summary>+ 答えを表示</summary>
+<div>
+
+`free(arr)` で解放されるのはスタック領域にある変数 `arr` のメモリであり， `malloc(16)` で確保したヒープ領域のメモリではありません．そのため，
+
+```
+munmap_chunk(): invalid pointer
+```
+
+というエラーが**実行時に**発生します．これは， `malloc` や `calloc` で確保したメモリ領域ではない場所を， `free` で解放しようとしたときに発生するエラーです．
+
+実際にこのコードを<a href="http://35.247.86.97/" target="_blank"><u>**L4T Playground**</u></a>で実行して，<font color="#F05">**コンパイルは通るのにエラーが実行時に発生する**</font>ことを確認しましょう！
+
+</div>
+</details>

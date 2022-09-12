@@ -107,4 +107,4 @@ struct A
 
 ```
 
-`ptr<struct A>` は[ポインタ](/types/ptr.html)であり，構造体 `A` のサイズに依らず8バイトだからです．
+`ptr<struct A>` は[ポインタ](./ptr.html)であり，構造体 `A` のサイズに依らず8バイトだからです．

@@ -80,15 +80,16 @@ func main() -> num
 
 ```
 
-[関数](/func.html) `swap` は，配列のポインタと2つの整数 `index1` と `index2` を引数として受け取り，配列の `index1` 番目の値と `index2` 番目の値を交換します．配列のアドレスを引数として受け取るため， `main` 関数内の変数である配列 `arr` の中身を書き換えることができます．このコードを<a href="http://35.247.86.97/" target="_blank"><u>**L4T Playground**</u></a>で実行して， `arr[20]` と `arr[70]` の値が実際に入れ替わっていることを確認しましょう！
+[関数](../func.html) `swap` は，配列のポインタと2つの整数 `index1` と `index2` を引数として受け取り，配列の `index1` 番目の値と `index2` 番目の値を交換します．配列のアドレスを引数として受け取るため， `main` 関数内の変数である配列 `arr` の中身を書き換えることができます．このコードを<a href="http://35.247.86.97/" target="_blank"><u>**L4T Playground**</u></a>で実行して， `arr[20]` と `arr[70]` の値が実際に入れ替わっていることを確認しましょう！
 
 ### ヒープ領域にメモリを確保する例
 
 下のコードは，ヒープ領域に\\(8 \times 2 = 16\\)バイトのメモリを確保し，その場所を長さが\\(2\\)の配列として使っています．
 
 ```
-extern "C" any malloc
-extern "C" any printf
+ffi "C" free
+ffi "C" malloc
+ffi "C" printf
 
 func main() -> num
   ptr<array<num>[2]> arr
@@ -103,10 +104,3 @@ func main() -> num
   return 0
 
 ```
-
-<lord-icon
-  src="https://cdn.lordicon.com/giaigwkd.json"
-  trigger="loop"
-  delay="1000"
-  style="height:2em">
-</lord-icon> <small> `extern "C" any malloc` と `extern "C" any printf` は未実装であり，現在は1行目と2行目を除いたコードを書くことで同じ挙動を試すことができます．</small>

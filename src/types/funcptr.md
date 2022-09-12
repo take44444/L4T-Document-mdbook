@@ -15,7 +15,7 @@ funcptr (num) -> num fp
 下のコードは， `funcptr` 型の配列を宣言し，そこに `add` 関数と `sub` 関数のアドレスを代入し，その配列を使って関数を呼び出しています．
 
 ```
-extern "C" any printf
+ffi "C" printf
 
 func add(num x, num y) -> num
   return x + y
@@ -34,10 +34,3 @@ func main() -> num
   return 0
 
 ```
-
-<lord-icon
-  src="https://cdn.lordicon.com/giaigwkd.json"
-  trigger="loop"
-  delay="1000"
-  style="height:2em">
-</lord-icon> <small> `extern "C" any printf` は未実装であり，現在は1行目を除いたコードを書くことで同じ挙動を試すことができます．</small>
